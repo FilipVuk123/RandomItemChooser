@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Item Chooser</title>
+</head>
+<body>
+    <h1>Random Item Chooser</h1>
+    <form id="item-form">
+        <label for="items">Enter a list of items separated by commas:</label>
+        <br>
+        <input type="text" id="items" required>
+        <br><br>
+        <button type="submit">Choose Random Item</button>
+    </form>
+
+    <h2 id="result"></h2>
+
+    <script>
+        document.getElementById('item-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get the user input and split it into an array
+            var items = document.getElementById('items').value.split(',');
+
+            // Trim whitespace from each item
+            items = items.map(function(item) {
+                return item.trim();
+            });
+
+            // Check if the array has items
+            if (items.length > 0) {
+                // Choose a random item
+                var randomItem = items[Math.floor(Math.random() * items.length)];
+
+                // Display the result
+                document.getElementById('result').textContent = 'The randomly selected item is: ' + randomItem;
+            } else {
+                document.getElementById('result').textContent = 'Please enter at least one item.';
+            }
+        });
+    </script>
+</body>
+</html>
